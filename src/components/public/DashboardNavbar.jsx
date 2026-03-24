@@ -8,9 +8,12 @@ import {
   InputBase,
 } from "@mui/material";
 import { Menu, Bell, Search } from "lucide-react";
+import { useNavigate } from "react-router-dom"; // ✅ ADD
+import { ROUTES } from "../../core/constants/routes.constant"; // ✅ ADD
 
 const DashboardNavbar = ({ title, onMenuClick, role }) => {
   const isAdmin = role === "ADMIN";
+  const navigate = useNavigate(); // ✅ ADD
 
   return (
     <AppBar
@@ -44,7 +47,6 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
 
           {isAdmin ? (
             <Box display="flex" alignItems="center" gap={2}>
-              {/* Profile Icon */}
               <Box
                 sx={{
                   width: 36,
@@ -61,7 +63,6 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
                 👤
               </Box>
 
-              {/* Profile Name */}
               <Typography sx={{ color: "#FFF2EF", fontSize: "16px" }}>
                 Profile name
               </Typography>
@@ -99,8 +100,15 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
               />
             </Box>
 
-            {/* NOTIFICATION */}
-            <Box sx={{ position: "relative", cursor: "pointer" }}>
+            {/* 🔔 NOTIFICATION (UPDATED) */}
+            <Box
+              sx={{
+                position: "relative",
+                cursor: "pointer",
+                "&:hover": { opacity: 0.8 },
+              }}
+              onClick={() => navigate(ROUTES.ADMIN_NOTIFICATION)} // ✅ FIX
+            >
               <Bell color="#FFF2EF" size={20} />
 
               {/* RED BADGE */}
