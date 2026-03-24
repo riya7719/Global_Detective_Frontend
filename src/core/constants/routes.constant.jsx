@@ -37,7 +37,7 @@ export const ROUTES = {
   REQUEST_INVESTIGATION: "/request-investigation", // request investigation form
 
   // admin Pages
-  ADMIN_DASHBOARD: "/admin-dashboard", // admin dashboard
+  ADMIN_DASHBOARD: "/admin-dashboardd", // admin dashboard
 
   ADMIN_USER_MANAGEMENT: "/admin-user-management", // admin user management
   ADMIN_USER_MANAGEMENT_DETAIL: "/admin-user-management-detail", // admin user management details

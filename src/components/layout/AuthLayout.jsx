@@ -4,6 +4,7 @@ import DashboardLayout from './DashboardLayout';
 const AdminLayout = () => {
   return (
     <DashboardLayout role="ADMIN" />
+    
   );
 };
 
