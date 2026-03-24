@@ -110,12 +110,7 @@ const AdminDetectiveManagementPage = () => {
           <p className="text-xs lightGray">
             Manage all detectives, review KYC documents, and monitor performance
           </p>
-        </div>
-
-        <input
-          placeholder="Search"
-          className="bg-[#0E1F2B] px-4 py-2 rounded-full text-sm w-72 outline-none"
-        />
+        </div>  
       </div>
 
       {/* STATS */}
