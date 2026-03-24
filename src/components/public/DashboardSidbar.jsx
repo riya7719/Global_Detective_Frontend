@@ -7,93 +7,97 @@ import {
   ListItemButton,
   ListItemText
 } from '@mui/material';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { ROUTES } from '../../core/constants/routes.constant';
 
 const drawerWidth = 240;
 
 const DashboardSidbar = ({ role, mobileOpen, handleDrawerToggle }) => {
   const navigate = useNavigate();
+  const location = useLocation();
   const isAdmin = role === "ADMIN";
 
+  // ✅ ADMIN MENU WITH ROUTES
   const adminMenu = [
-    "Dashboard",
-    "Case Management",
-    "Detective Management",
-    "User Management",
-    "Activity History",
-    "Blogs",
-    "Profile",
-    "Settings"
+    { name: "Dashboard", path: ROUTES.ADMIN_DASHBOARD },
+
+    { name: "Case Management", path: ROUTES.ADMIN_CASE_MANAGEMENT },
+
+    { name: "Detective Management", path: ROUTES.ADMIN_DETECTIVE_MANAGEMENT },
+
+    { name: "User Management", path: ROUTES.ADMIN_USER_MANAGEMENT },
+
+    { name: "Activity History", path: ROUTES.ADMIN_HISTORY },
+
+    { name: "Blogs", path: "/admin-blogs" }, // ⚠️ not in routes, temporary
+
+    { name: "Profile", path: ROUTES.ADMIN_PROFILE },
+
+    { name: "Settings", path: ROUTES.ADMIN_SETTINGS }
   ];
 
   const drawer = (
     <Box
       sx={{
-        backgroundColor: isAdmin ? "#140000" : "inherit",
+        backgroundColor: "#0f1a1f",
         height: "100%",
-        color: isAdmin ? "white" : "inherit",
-        p: isAdmin ? 2 : 0
+        color: "white",
+        p: 2
       }}
     >
       <List>
 
-        {/* Admin UI */}
-        {isAdmin ? (
-          adminMenu.map((item, index) => (
+        {/* ADMIN MENU */}
+        {isAdmin && adminMenu.map((item, index) => {
+          const isActive = location.pathname === item.path;
+
+          return (
             <ListItem key={index} disablePadding>
               <ListItemButton
+                onClick={() => {
+                  navigate(item.path);
+                  handleDrawerToggle && handleDrawerToggle();
+                }}
                 sx={{
                   borderRadius: "8px",
                   mb: 1,
-                  backgroundColor: index === 0 ? "#D92B3A" : "transparent",
+                  backgroundColor: isActive ? "#D92B3A" : "transparent",
                   "&:hover": {
                     backgroundColor: "#590202"
                   }
                 }}
               >
-                <ListItemText primary={item} />
+                <ListItemText primary={item.name} />
               </ListItemButton>
             </ListItem>
-          ))
-        ) : (
+          );
+        })}
+
+        {/* USER / DETECTIVE */}
+        {!isAdmin && (
           <>
-            {/* Existing USER/DETECTIVE UI */}
             <ListItem disablePadding>
               <ListItemButton onClick={() => {
                 navigate(
                   role === 'USER'
                     ? ROUTES.USER_DASHBOARD
-                    : (role === 'ADMIN'
-                        ? ROUTES.ADMIN_DASHBOARD
-                        : ROUTES.DETECTIVE_DASHBOARD)
+                    : ROUTES.DETECTIVE_DASHBOARD
                 );
-                handleDrawerToggle && handleDrawerToggle();
               }}>
                 <ListItemText primary="Dashboard" />
               </ListItemButton>
             </ListItem>
-
-            {role === 'USER' && (
-              <ListItem disablePadding>
-                <ListItemButton onClick={() => {
-                  navigate(ROUTES.REQUEST_INVESTIGATION);
-                  handleDrawerToggle && handleDrawerToggle();
-                }}>
-                  <ListItemText primary="Request Investigation" />
-                </ListItemButton>
-              </ListItem>
-            )}
           </>
         )}
+
       </List>
     </Box>
   );
 
   return (
     <Box component="nav" sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}>
-      
-      {/* Mobile */}
+
+      {/* MOBILE */}
       <Drawer
         variant="temporary"
         open={mobileOpen}
@@ -104,14 +108,15 @@ const DashboardSidbar = ({ role, mobileOpen, handleDrawerToggle }) => {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             mt: '64px',
-            backgroundColor: isAdmin ? "#140000" : undefined
+            backgroundColor: "#0f1a1f",
+            borderRight: "1px solid #1f2f3a"
           },
         }}
       >
         {drawer}
       </Drawer>
 
-      {/* Desktop */}
+      {/* DESKTOP */}
       <Drawer
         variant="permanent"
         open
@@ -120,7 +125,8 @@ const DashboardSidbar = ({ role, mobileOpen, handleDrawerToggle }) => {
           '& .MuiDrawer-paper': {
             width: drawerWidth,
             mt: '64px',
-            backgroundColor: isAdmin ? "#140000" : undefined
+            backgroundColor: "#0f1a1f",
+            borderRight: "1px solid #1f2f3a"
           },
         }}
       >
