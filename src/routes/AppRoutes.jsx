@@ -40,6 +40,8 @@ const DetectiveSettingsPage = lazy(() => import("../pages/detective/DetectiveSet
 /* ======================= ADMIN PAGES ======================= */
 const AdminDashboardPage = lazy(() => import("../pages/admin/AdminDashboardPage"));
 
+const AllCaseManagement = lazy(() => import("../components/admin/caseManagement/AllCaseManagement"));
+
 const AdminUserManagementPage = lazy(() => import("../pages/admin/userManagement/AdminUserManagementPage"));
 const AdminUserDetailsPage = lazy(() => import("../pages/admin/userManagement/AdminUserDetailsPage"));
 
@@ -57,7 +59,13 @@ const AdminHistoryPage = lazy(() => import("../pages/admin/history/AdminHistoryP
 const AdminNotification = lazy(() => import("../pages/admin/AdminNotification"));
 const AdminProfilePage = lazy(() => import("../pages/admin/AdminProfilePage"));
 const AdminSettings = lazy(() => import("../pages/admin/AdminSettings"));
+const PendingCaseManagement = lazy(() =>
+  import("../components/admin/caseManagement/PendingCaseManagement")
+);
 
+const ReviewInsightsCaseManagement = lazy(() =>
+  import("../components/admin/caseManagement/ReviewInsightsCaseManagement")
+);
 /* ======================= PUBLIC PAGES ======================= */
 const HomeHero = lazy(() => import("../pages/nonuserpages/HomePage"));
 
@@ -113,7 +121,19 @@ const AppRoutes = () => {
         <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
           <Route element={<AdminLayout />}>
             <Route path={ROUTES.ADMIN_DASHBOARD} element={<AdminDashboardPage />} />
+            <Route
+  path={ROUTES.ADMIN_ALL_CASE_MANAGEMENT}
+  element={<AllCaseManagement />}
+/>
+<Route
+  path={ROUTES.ADMIN_PENDING_CASE_MANAGEMENT}
+  element={<PendingCaseManagement />}
+/>
 
+<Route
+  path={ROUTES.ADMIN_REVIEW_INSIGHTS}
+  element={<ReviewInsightsCaseManagement />}
+/>
             <Route path={ROUTES.ADMIN_USER_MANAGEMENT} element={<AdminUserManagementPage />} />
             <Route path={ROUTES.ADMIN_USER_MANAGEMENT_DETAIL} element={<AdminUserDetailsPage />} />
 

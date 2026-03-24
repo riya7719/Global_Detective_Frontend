@@ -37,6 +37,10 @@ export const ROUTES = {
   REQUEST_INVESTIGATION: "/request-investigation", // request investigation form
 
   // admin Pages
+ADMIN_ALL_CASE_MANAGEMENT: "/admin-all-case-management",
+ADMIN_PENDING_CASE_MANAGEMENT: "/admin-pending-case-management",
+ADMIN_REVIEW_INSIGHTS: "/admin-review-insights",
+
   ADMIN_DASHBOARD: "/admin-dashboardd", // admin dashboard
 
   ADMIN_USER_MANAGEMENT: "/admin-user-management", // admin user management
