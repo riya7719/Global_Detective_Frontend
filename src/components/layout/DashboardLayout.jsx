@@ -16,7 +16,7 @@ const DashboardLayout = ({ role, title, children }) => {
   };
 
   const getRoleTitle = () => {
-    switch(role) {
+    switch (role) {
       case 'USER': return 'User Dashboard';
       case 'DETECTIVE': return 'Detective Dashboard';
       case 'ADMIN': return 'Admin Dashboard';
@@ -25,17 +25,18 @@ const DashboardLayout = ({ role, title, children }) => {
   };
 
   return (
-    <Box sx={{ 
+    <Box sx={{
       display: 'flex',
       minHeight: '100vh',
       overflowX: 'hidden'
     }}>
       <CssBaseline />
-      <DashboardNavbar 
-        title={title || getRoleTitle()} 
-        onMenuClick={handleDrawerToggle} 
+      <DashboardNavbar
+        title={title || getRoleTitle()}
+        onMenuClick={handleDrawerToggle}
+        role={role}   // ✅ THIS LINE FIXES EVERYTHING
       />
-      <DashboardSidebar 
+      <DashboardSidebar
         role={role}
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
