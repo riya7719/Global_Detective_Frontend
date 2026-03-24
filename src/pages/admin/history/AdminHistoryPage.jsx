@@ -62,12 +62,13 @@ const AdminHistoryPage = () => {
   return (
     <div
       style={{
-        padding: "20px",
+        padding: "16px",
         color: "white",
         background: "linear-gradient(90deg, #0d0d0d, #0f1a1f)",
         minHeight: "100vh"
       }}
     >
+
       {/* HEADER */}
       <div style={{ marginBottom: "20px" }}>
         <h2 style={{ display: "flex", alignItems: "center", gap: "8px" }}>
@@ -82,7 +83,7 @@ const AdminHistoryPage = () => {
       <div
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(3, 1fr)",
+          gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
           gap: "16px",
           marginBottom: "20px"
         }}
@@ -135,7 +136,13 @@ const AdminHistoryPage = () => {
           }}
         />
 
-        <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        <div
+          style={{
+            display: "flex",
+            gap: "8px",
+            flexWrap: "wrap"
+          }}
+        >
           {["All Time", "Today", "This Week", "This Month"].map((t) => (
             <button
               key={t}
@@ -200,28 +207,27 @@ const AdminHistoryPage = () => {
                 background: "#0f1a1f",
                 border: "1px solid #1f2f3a",
                 borderRadius: "10px",
-                padding: "12px"
+                padding: "12px",
+                alignItems: "flex-start"
               }}
             >
-              {/* DOT */}
               <div
                 style={{
                   width: "10px",
                   height: "10px",
                   marginTop: "6px",
                   borderRadius: "50%",
-                  background: item.color
+                  background: item.color,
+                  flexShrink: 0
                 }}
               />
 
-              {/* CONTENT */}
               <div style={{ flex: 1 }}>
                 <p style={{ fontWeight: "500" }}>{item.title}</p>
                 <p style={{ fontSize: "12px", color: "#909090" }}>
                   {item.desc}
                 </p>
 
-                {/* ✅ FIXED TAG */}
                 <span
                   style={{
                     background: "rgba(144, 202, 249, 0.1)",
@@ -241,7 +247,7 @@ const AdminHistoryPage = () => {
                 </p>
               </div>
 
-              <div style={{ color: "#575757" }}>›</div>
+              <div style={{ color: "#575757", flexShrink: 0 }}>›</div>
             </div>
           ))}
         </div>
