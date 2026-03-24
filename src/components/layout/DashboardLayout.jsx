@@ -7,7 +7,7 @@ import useResponsive from '../../hooks/useResponsive';
 
 const drawerWidth = 240;
 
-const DashboardLayout = ({ role, title }) => {
+const DashboardLayout = ({ role, title, children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { isMobile } = useResponsive();
 
@@ -51,7 +51,7 @@ const DashboardLayout = ({ role, title }) => {
           maxWidth: '100vw'
         }}
       >
-        <Outlet />
+        {children || <Outlet />}
       </Box>
     </Box>
   );

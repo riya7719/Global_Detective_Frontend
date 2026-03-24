@@ -31,7 +31,7 @@
 // export default ProtectedRoute;
 
 import React from "react";
-import { Navigate, Outlet } from "react-router-dom";
+import { Navigate, Outlet, useLocation } from "react-router-dom";
 import { useAuth } from "../core/contexts/AuthContext";
 import { ROUTES } from "../core/constants/routes.constant";
 
@@ -59,6 +59,7 @@ const DEV_DEFAULT_ROLE = "admin"; // admin | detective | user
 
 const ProtectedRoute = ({ allowedRoles }) => {
   const { isLoggedIn, user, isLoading } = useAuth();
+  const location = useLocation();
 
   const effectiveUser = DEV_MODE
     ? DEV_USERS[DEV_DEFAULT_ROLE]
@@ -84,6 +85,18 @@ const ProtectedRoute = ({ allowedRoles }) => {
       return <Navigate to={ROUTES.USER_DASHBOARD} replace />;
 
     return <Navigate to="/" replace />;
+  }
+
+  // Enforce detective KYC: if detective is logged in but hasn't completed KYC,
+  // allow access only to the detective KYC form route, redirect all other detective
+  // protected pages to the KYC form.
+  if (!DEV_MODE && effectiveUser?.role === "detective") {
+    const kycComplete = effectiveUser?.kycComplete ?? JSON.parse(localStorage.getItem('user') || '{}').kycComplete;
+
+    const isOnKycPage = location?.pathname === ROUTES.DETECTIVE_FORM;
+    if (!kycComplete && !isOnKycPage) {
+      return <Navigate to={ROUTES.DETECTIVE_FORM} replace />;
+    }
   }
 
   return <Outlet />;

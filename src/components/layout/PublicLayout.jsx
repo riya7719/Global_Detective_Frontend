@@ -1,12 +1,14 @@
 import React from 'react';
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Box } from '@mui/material';
 import Navbar from '../public/Navbar';
-import Footer from '../public/Footer';
+// import Footer from '../public/Footer';
 import useResponsive from '../../hooks/useResponsive';
 
 const PublicLayout = () => {
   const { isMobile } = useResponsive();
+  const location = useLocation();
+  const hideNavbar = ['/login', '/signup', '/otp'].includes(location.pathname);
   
   return (
     <Box sx={{ 
@@ -15,7 +17,7 @@ const PublicLayout = () => {
       flexDirection: 'column',
       overflowX: 'hidden'
     }}>
-      <Navbar />
+      {!hideNavbar && <Navbar />}
       <Box 
         component="main" 
         sx={{ 
@@ -27,7 +29,7 @@ const PublicLayout = () => {
       >
         <Outlet />
       </Box>
-      <Footer />
+      {/* <Footer /> */}
     </Box>
   );
 };

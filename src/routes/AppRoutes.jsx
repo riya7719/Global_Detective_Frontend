@@ -3,11 +3,16 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import { ROUTES } from "../core/constants/routes.constant";
 
+
 /* ======================= LAYOUTS ======================= */
 const PublicLayout = lazy(() => import("../components/layout/PublicLayout"));
 const UserLayout = lazy(() => import("../components/layout/UserLayout"));
 const DetectiveLayout = lazy(() => import("../components/layout/DetectiveLayout"));
 const AdminLayout = lazy(() => import("../components/layout/AuthLayout"));
+const AboutUs = lazy(() => import("../components/nonuser/home/AboutUs"));
+const Blogs = lazy(() => import("../components/nonuser/home/Blogs"));
+const ContactInfo = lazy(() => import("../components/nonuser/home/ContactInfo"));
+const Services = lazy(() => import("../components/nonuser/home/Services"));
 
 /* ======================= AUTH PAGES ======================= */
 const Login = lazy(() => import("../pages/auth/Login"));
@@ -23,6 +28,7 @@ const UserDetailsPage = lazy(() => import("../pages/user/UserDetailsPage"));
 const UserNotificationPage = lazy(() => import("../pages/user/UserNotificationPage"));
 const UserProfilePage = lazy(() => import("../pages/user/UserProfilePage"));
 const UserSettingsPage = lazy(() => import("../pages/user/UserSettingsPage"));
+const RequestInvestigationPage = lazy(() => import("../pages/user/RequestInvestigationPage"));
 
 /* ======================= DETECTIVE PAGES ======================= */
 const DetectiveDashboardPage = lazy(() => import("../pages/detective/DetectiveDashboardPage"));
@@ -65,6 +71,13 @@ const AppRoutes = () => {
           <Route path={ROUTES.SIGNUP} element={<Signup />} />
           <Route path={ROUTES.LOGIN} element={<Login />} />
           <Route path={ROUTES.OTP} element={<OTP />} />
+
+            {/* NEW ROUTES */}
+            <Route path={ROUTES.ABOUT} element={<AboutUs />} />
+              <Route path={ROUTES.SERVICES} element={<Services />} />
+          
+            <Route path={ROUTES.BLOG} element={<Blogs />} />
+             <Route path={ROUTES.CONTACT} element={<ContactInfo />} />
         </Route>
 
         {/* ================= USER ROUTES ================= */}
@@ -76,13 +89,18 @@ const AppRoutes = () => {
             <Route path={ROUTES.USER_NOTIFICATION} element={<UserNotificationPage />} />
             <Route path={ROUTES.USER_PROFILE} element={<UserProfilePage />} />
             <Route path={ROUTES.USER_SETTINGS} element={<UserSettingsPage />} />
+            <Route path={ROUTES.REQUEST_INVESTIGATION} element={<RequestInvestigationPage />} />
           </Route>
+        </Route>
+
+        {/* ================= DETECTIVE FORM (NO LAYOUT) ================= */}
+        <Route element={<ProtectedRoute allowedRoles={["detective"]} />}>
+          <Route path={ROUTES.DETECTIVE_FORM} element={<DetectiveForm />} />
         </Route>
 
         {/* ================= DETECTIVE ROUTES ================= */}
         <Route element={<ProtectedRoute allowedRoles={["detective"]} />}>
           <Route element={<DetectiveLayout />}>
-            <Route path={ROUTES.DETECTIVE_FORM} element={<DetectiveForm />} />
             <Route path={ROUTES.DETECTIVE_DASHBOARD} element={<DetectiveDashboardPage />} />
             <Route path={ROUTES.DETECTIVE_CASE_DETAILS} element={<CaseDetailsPage />} />
             <Route path={ROUTES.DETECTIVE_NOTIFICATION} element={<DetectiveNotificationPage />} />

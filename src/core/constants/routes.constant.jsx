@@ -34,6 +34,7 @@ export const ROUTES = {
   USER_PROFILE: "/user-profile", // user profile
   USER_NOTIFICATION: "/user-notification", // user notification
   USER_SETTINGS: "/user-settings", // user settings
+  REQUEST_INVESTIGATION: "/request-investigation", // request investigation form
 
   // admin Pages
   ADMIN_DASHBOARD: "/admin-dashboard", // admin dashboard

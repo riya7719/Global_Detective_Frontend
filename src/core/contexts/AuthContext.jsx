@@ -34,13 +34,22 @@ export const AuthProvider = ({ children }) => {
       data?.data ||
       null;
     
+    // Get role from stored accountType or from user object
+    const storedAccountType = localStorage.getItem('accountType');
+    const role = userObj?.role || storedAccountType;
+    
     if (!token) {
       console.error("❌ NO TOKEN RECEIVED FROM BACKEND");
     }
   
+    // Determine kyc status: backends may provide it, otherwise default
+    const kycComplete =
+      userObj?.kycComplete ?? data?.kycComplete ?? (role === 'detective' ? false : true);
+
     const userData = {
-      role: userObj?.role,
+      role: role,
       token: token,
+      kycComplete,
     };
   
     // console.log("SAVING USER TO LS:", userData);
@@ -48,9 +57,16 @@ export const AuthProvider = ({ children }) => {
     localStorage.setItem("user", JSON.stringify(userData));
 
     // save token separately (important!)
-    localStorage.setItem("TOKEN", data.token);
+    localStorage.setItem("TOKEN", token);
 
     setUser(userData);
+  };
+
+  // mark kyc complete (persists to localStorage & context)
+  const setKycComplete = (value) => {
+    const updated = { ...(user || {}), kycComplete: !!value };
+    localStorage.setItem('user', JSON.stringify(updated));
+    setUser(updated);
   };
 
  
@@ -63,7 +79,7 @@ export const AuthProvider = ({ children }) => {
   const isLoggedIn = !!user;
 
   return (
-    <AuthContext.Provider value={{ user, isLoggedIn, isLoading, login, logout }}>
+    <AuthContext.Provider value={{ user, isLoggedIn, isLoading, login, logout, setKycComplete }}>
       {children}
     </AuthContext.Provider>
   );

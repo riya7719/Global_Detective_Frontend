@@ -1,7 +1,7 @@
 import React from 'react'
 import HomeHero from "../../components/nonuser/home/HomeHero";
 import AboutUs from "../../components/nonuser/home/AboutUs";
-import Blog from "../../components/nonuser/home/Blogs";
+import Blogs from "../../components/nonuser/home/Blogs";
 import Services from "../../components/nonuser/home/Services";
 import EnquiryForm from "../../components/nonuser/home/EnquiryForm";
 import HowItWorks from '../../components/nonuser/home/HowItWorks';
@@ -10,12 +10,12 @@ import ContactInfo from '../../components/nonuser/home/ContactInfo';
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="bg-[#0b1120]">
         <HomeHero />
         <AboutUs />
         <HowItWorks />
         <Services />
-        <Blog />
+        <Blogs />
         <Review />
         <EnquiryForm />
         <ContactInfo />
