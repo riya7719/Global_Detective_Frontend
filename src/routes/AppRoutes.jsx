@@ -40,6 +40,8 @@ const DetectiveSettingsPage = lazy(() => import("../pages/detective/DetectiveSet
 /* ======================= ADMIN PAGES ======================= */
 const AdminDashboardPage = lazy(() => import("../pages/admin/AdminDashboardPage"));
 
+const AllCaseManagement = lazy(() => import("../components/admin/caseManagement/AllCaseManagement"));
+
 const AdminUserManagementPage = lazy(() => import("../pages/admin/userManagement/AdminUserManagementPage"));
 const AdminUserDetailsPage = lazy(() => import("../pages/admin/userManagement/AdminUserDetailsPage"));
 
@@ -113,6 +115,10 @@ const AppRoutes = () => {
         <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
           <Route element={<AdminLayout />}>
             <Route path={ROUTES.ADMIN_DASHBOARD} element={<AdminDashboardPage />} />
+            <Route
+  path={ROUTES.ADMIN_ALL_CASE_MANAGEMENT}
+  element={<AllCaseManagement />}
+/>
 
             <Route path={ROUTES.ADMIN_USER_MANAGEMENT} element={<AdminUserManagementPage />} />
             <Route path={ROUTES.ADMIN_USER_MANAGEMENT_DETAIL} element={<AdminUserDetailsPage />} />
