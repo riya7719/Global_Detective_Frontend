@@ -21,7 +21,7 @@ const DashboardSidbar = ({ role, mobileOpen, handleDrawerToggle }) => {
   const adminMenu = [
     { name: "Dashboard", path: ROUTES.ADMIN_DASHBOARD },
 
-    { name: "Case Management", path: ROUTES.ADMIN_CASE_MANAGEMENT },
+    { name: "Case Management", path: ROUTES.ADMIN_ALL_CASE_MANAGEMENT },
 
     { name: "Detective Management", path: ROUTES.ADMIN_DETECTIVE_MANAGEMENT },
 
@@ -29,7 +29,7 @@ const DashboardSidbar = ({ role, mobileOpen, handleDrawerToggle }) => {
 
     { name: "Activity History", path: ROUTES.ADMIN_HISTORY },
 
-    { name: "Blogs", path: "/admin-blogs" }, // ⚠️ not in routes, temporary
+    { name: "Blogs", path: ROUTES.ADMIN_BLOG}, // ⚠️ not in routes, temporary
 
     { name: "Profile", path: ROUTES.ADMIN_PROFILE },
 

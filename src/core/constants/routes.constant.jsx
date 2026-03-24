@@ -56,7 +56,7 @@ ADMIN_REVIEW_INSIGHTS: "/admin-review-insights",
   ADMIN_CASE_MANAGEMENT_UNASSIGNED: "/admin-case-management-unassigned", // admin case management unassigned
 
   ADMIN_HISTORY: "/admin-history", // admin history
-  ADMIN_BLOGS: "/admin-blogs", // admin blogs (temporary, not in sidebar)
+  
   ADMIN_PROFILE: "/admin-profile", // admin profile
   ADMIN_NOTIFICATION: "/admin-notification", // admin notification
   ADMIN_BLOG: "/admin-blog", // admin blog management
