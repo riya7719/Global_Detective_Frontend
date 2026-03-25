@@ -15,23 +15,23 @@ const Badge = ({ text, color }) => (
 
 const AdminUserDetailsPage = () => {
   return (
-    <div className="p-6 montserrat text-white bg-[#08141B] min-h-screen">
+    <div className="p-4 sm:p-6 montserrat text-white bg-[#08141B] min-h-screen">
 
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
         <div>
           <p className="text-xs lightGray mb-1 cursor-pointer">← Back</p>
-          <h1 className="text-lg font-semibold">John Smith</h1>
-          <p className="text-xs lightGray">john.smith@email.com</p>
+          <h1 className="text-base sm:text-lg font-semibold">John Smith</h1>
+          <p className="text-xs lightGray break-all">john.smith@email.com</p>
         </div>
 
-        <button className="px-4 py-1 text-xs rounded-lg bg-red text-white">
+        <button className="w-full sm:w-auto px-4 py-1 text-xs rounded-lg bg-red text-white">
           Block User
         </button>
       </div>
 
       {/* TOP CARDS */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
 
         <Card title="Account Status">
           <Badge text="Active" color="bg-green-500/20 text-green-400" />
@@ -52,7 +52,7 @@ const AdminUserDetailsPage = () => {
       </div>
 
       {/* MAIN GRID */}
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
 
         {/* PERSONAL INFO */}
         <Card title="Personal Information">
@@ -60,7 +60,7 @@ const AdminUserDetailsPage = () => {
           <p><span className="lightGray">DOB:</span> Mar 15, 1985</p>
           <p><span className="lightGray">Phone:</span> +1-555-0101</p>
           <p><span className="lightGray">Alternate Phone:</span> +1-555-0201</p>
-          <p><span className="lightGray">Email:</span> john.smith@email.com</p>
+          <p className="break-all"><span className="lightGray">Email:</span> john.smith@email.com</p>
           <p><span className="lightGray">Aadhar:</span> 2345-5678-2457</p>
           <p><span className="lightGray">Address:</span> New York, NY</p>
 
@@ -105,10 +105,10 @@ const AdminUserDetailsPage = () => {
       </div>
 
       {/* CASE HISTORY */}
-      <div className="bg-[#0E1F2B] p-4 rounded-xl">
+      <div className="bg-[#0E1F2B] p-4 rounded-xl overflow-x-auto">
         <h3 className="text-sm lightGray mb-3">Case History</h3>
 
-        <table className="w-full text-sm table-fixed">
+        <table className="w-full text-sm table-fixed min-w-[800px]">
           <thead className="text-lightGray border-b border-gray/20">
             <tr>
               <th className="text-left py-3 w-[10%]">Case ID</th>

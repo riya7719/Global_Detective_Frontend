@@ -4,6 +4,7 @@ import AppRoutes from "./routes/AppRoutes";
 import { AuthProvider } from "./core/contexts/AuthContext";
 import ScrollToTop from "./pages/ScrollToTop";
 import './App.css'
+import Footer from "./components/public/Footer";
 
 function App() {
 
@@ -12,6 +13,7 @@ function App() {
       <BrowserRouter>
         <ScrollToTop />
         <AppRoutes/>
+        
       </BrowserRouter>
     </AuthProvider>
   )

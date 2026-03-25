@@ -7,35 +7,40 @@ import {
   Box,
   InputBase,
 } from "@mui/material";
-import { Menu, Bell, Search } from "lucide-react";
-import { useNavigate } from "react-router-dom"; // ✅ ADD
-import { ROUTES } from "../../core/constants/routes.constant"; // ✅ ADD
+import { Menu } from "lucide-react";
+import { FiSearch, FiBell } from "react-icons/fi";
+import { FaRegUserCircle } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+import { ROUTES } from "../../core/constants/routes.constant";
 
 const DashboardNavbar = ({ title, onMenuClick, role }) => {
   const isAdmin = role === "ADMIN";
-  const navigate = useNavigate(); // ✅ ADD
+  const navigate = useNavigate();
 
   return (
-    <AppBar
-      position="fixed"
-      sx={{
-        zIndex: (theme) => theme.zIndex.drawer + 1,
-        background: isAdmin
-          ? "linear-gradient(90deg, #0d0d0d, #0f1a1f)"
-          : "primary.main",
-        boxShadow: isAdmin ? "none" : undefined,
-        borderBottom: isAdmin ? "1px solid #1a1a1a" : "none",
-      }}
-    >
+ <AppBar
+  position={isAdmin ? "fixed" : "sticky"}
+  sx={{
+    top: 0,
+    zIndex: (theme) => theme.zIndex.drawer + 1,
+    background: isAdmin
+      ? "linear-gradient(90deg, #0B1220, #060A13)"
+      : "#0B1220",
+    boxShadow: isAdmin ? "none" : "0 2px 10px rgba(0,0,0,0.3)",
+    borderBottom: "1px solid #1a1a1a",
+  }}
+>
       <Toolbar
         sx={{
           display: "flex",
           justifyContent: "space-between",
           minHeight: "70px",
+          px: 3,
         }}
       >
         {/* LEFT */}
         <Box display="flex" alignItems="center" gap={2}>
+          {/* MOBILE MENU */}
           <IconButton
             color="inherit"
             edge="start"
@@ -45,25 +50,11 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
             <Menu />
           </IconButton>
 
+          {/* ADMIN PROFILE */}
           {isAdmin ? (
-            <Box display="flex" alignItems="center" gap={2}>
-              <Box
-                sx={{
-                  width: 36,
-                  height: 36,
-                  borderRadius: "50%",
-                  border: "1px solid #909090",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: "#909090",
-                  fontSize: "14px",
-                }}
-              >
-                👤
-              </Box>
-
-              <Typography sx={{ color: "#FFF2EF", fontSize: "16px" }}>
+            <Box display="flex" alignItems="center" gap={1.5}>
+              <FaRegUserCircle size={22} color="#FFF2EF" />
+              <Typography sx={{ color: "#FFF2EF", fontSize: "14px" }}>
                 Profile name
               </Typography>
             </Box>
@@ -75,7 +66,7 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
         {/* RIGHT */}
         {isAdmin && (
           <Box display="flex" alignItems="center" gap={3}>
-            {/* SEARCH */}
+            {/* 🔍 SEARCH */}
             <Box
               sx={{
                 display: "flex",
@@ -84,10 +75,10 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
                 px: 2,
                 py: 0.6,
                 borderRadius: "999px",
-                width: "350px",
+                width: { xs: "200px", sm: "300px", md: "350px" },
               }}
             >
-              <Search size={16} color="#909090" />
+              <FiSearch size={16} color="#909090" />
 
               <InputBase
                 placeholder="Search"
@@ -100,18 +91,18 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
               />
             </Box>
 
-            {/* 🔔 NOTIFICATION (UPDATED) */}
+            {/* 🔔 NOTIFICATION */}
             <Box
               sx={{
                 position: "relative",
                 cursor: "pointer",
                 "&:hover": { opacity: 0.8 },
               }}
-              onClick={() => navigate(ROUTES.ADMIN_NOTIFICATION)} // ✅ FIX
+              onClick={() => navigate(ROUTES.ADMIN_NOTIFICATION)}
             >
-              <Bell color="#FFF2EF" size={20} />
+              <FiBell size={20} color="#FFF2EF" />
 
-              {/* RED BADGE */}
+              {/* BADGE */}
               <Box
                 sx={{
                   position: "absolute",

@@ -60,3 +60,28 @@
     @apply px-4 md:px-8 lg:px-12;
   }
 } */
+
+
+/* 🔥 HIDE SCROLLBAR BUT KEEP SCROLL */
+/* 🔥 Hide scrollbar but keep scroll */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@keyframes verticalScroll {
+  0% {
+    transform: translateY(0%);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.animate-verticalScroll {
+  animation: verticalScroll 5s linear infinite;
+}

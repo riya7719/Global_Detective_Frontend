@@ -1,7 +1,7 @@
 import React from "react";
 
 const Card = ({ title, children }) => (
-  <div className="bg-[#0E1F2B] p-4 rounded-xl">
+  <div className="bg-[#0E1F2B] p-4 rounded-xl w-full">
     <h3 className="text-sm lightGray mb-3">{title}</h3>
     {children}
   </div>
@@ -15,23 +15,23 @@ const Badge = ({ text, color }) => (
 
 const AdminDetectiveDetailsPage = () => {
   return (
-    <div className="p-6 montserrat text-white bg-[#08141B] min-h-screen">
+    <div className="p-4 sm:p-6 montserrat text-white bg-[#08141B] min-h-screen">
 
       {/* HEADER */}
-      <div className="flex justify-between items-center mb-6">
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-6">
         <div>
-          <h1 className="text-lg font-semibold">Detective Emma Watson</h1>
+          <h1 className="text-base sm:text-lg font-semibold">Detective Emma Watson</h1>
           <p className="text-xs lightGray">Corporate Fraud</p>
         </div>
 
         <input
           placeholder="Search"
-          className="bg-[#0E1F2B] px-4 py-2 rounded-full text-sm w-72 outline-none"
+          className="bg-[#0E1F2B] px-4 py-2 rounded-full text-sm w-full md:w-72 outline-none"
         />
       </div>
 
       {/* TOP CARDS */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <Card title="Current Status">
           <Badge text="On Case" color="bg-blue-500/20 text-blue-400" />
         </Card>
@@ -50,9 +50,8 @@ const AdminDetectiveDetailsPage = () => {
       </div>
 
       {/* MAIN GRID */}
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
 
-        {/* PERSONAL INFO */}
         <Card title="Personal Information">
           <p><span className="lightGray">Full Name:</span> Emma Watson</p>
           <p><span className="lightGray">DOB:</span> Apr 15, 1990</p>
@@ -67,7 +66,6 @@ const AdminDetectiveDetailsPage = () => {
           </div>
         </Card>
 
-        {/* PROFESSIONAL INFO */}
         <Card title="Professional Information">
           <p><span className="lightGray">License:</span> 123456789</p>
           <p><span className="lightGray">State:</span> NY</p>
@@ -85,13 +83,11 @@ const AdminDetectiveDetailsPage = () => {
           </div>
         </Card>
 
-        {/* BACKGROUND CHECK */}
         <Card title="Background Check">
           <Badge text="Verified" color="bg-green-500/20 text-green-400" />
           <p className="text-xs lightGray mt-2">No criminal record</p>
         </Card>
 
-        {/* BIOGRAPHY */}
         <Card title="Biography">
           <p className="text-sm lightGray">
             Emma Watson is a seasoned detective with over 10 years of experience
@@ -102,10 +98,10 @@ const AdminDetectiveDetailsPage = () => {
       </div>
 
       {/* DOCUMENTS */}
-      <div className="bg-[#0E1F2B] p-4 rounded-xl mb-4">
+      <div className="bg-[#0E1F2B] p-4 rounded-xl mb-4 overflow-x-auto">
         <h3 className="text-sm lightGray mb-3">Submitted Documents</h3>
 
-        <table className="w-full text-sm">
+        <table className="w-full text-sm min-w-[600px]">
           <thead className="text-lightGray border-b border-gray/20">
             <tr>
               <th className="text-left">Document</th>
@@ -147,7 +143,7 @@ const AdminDetectiveDetailsPage = () => {
       </div>
 
       {/* REFERENCES */}
-      <div className="grid grid-cols-2 gap-4 mb-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
         <Card title="Professional References">
           <p>John Doe</p>
           <p className="text-xs lightGray">ABC Detective Agency</p>
@@ -160,10 +156,10 @@ const AdminDetectiveDetailsPage = () => {
       </div>
 
       {/* ASSIGNED CASES */}
-      <div className="bg-[#0E1F2B] p-4 rounded-xl">
+      <div className="bg-[#0E1F2B] p-4 rounded-xl overflow-x-auto">
         <h3 className="text-sm lightGray mb-3">Assigned Cases</h3>
 
-        <table className="w-full text-sm">
+        <table className="w-full text-sm min-w-[700px]">
           <thead className="text-lightGray border-b border-gray/20">
             <tr>
               <th className="text-left">Case ID</th>
