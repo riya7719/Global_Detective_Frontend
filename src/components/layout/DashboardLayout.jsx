@@ -16,7 +16,7 @@ const DashboardLayout = ({ role, title, children }) => {
   };
 
   const getRoleTitle = () => {
-    switch(role) {
+    switch (role) {
       case 'USER': return 'User Dashboard';
       case 'DETECTIVE': return 'Detective Dashboard';
       case 'ADMIN': return 'Admin Dashboard';
@@ -25,44 +25,43 @@ const DashboardLayout = ({ role, title, children }) => {
   };
 
   return (
-    <Box sx={{ 
+    <Box sx={{
       display: 'flex',
       minHeight: '100vh',
-      overflowX: 'hidden'
+      overflowX: 'hidden',
+      backgroundColor: "#0d0d0d"
     }}>
       <CssBaseline />
-      <DashboardNavbar 
-        title={title || getRoleTitle()} 
-        onMenuClick={handleDrawerToggle} 
+
+      <DashboardNavbar
+        title={title || getRoleTitle()}
+        onMenuClick={handleDrawerToggle}
+        role={role}
       />
-      <DashboardSidebar 
+
+      <DashboardSidebar
         role={role}
         mobileOpen={mobileOpen}
         handleDrawerToggle={handleDrawerToggle}
       />
+
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           p: isMobile ? 1 : 3,
-          width: { sm: `calc(100% - ${drawerWidth}px)` },
-          mt: { xs: '56px', sm: '64px' }, // Height of the navbar
-          minHeight: 'calc(100vh - 64px)',
-          maxWidth: '100vw'
+          width: {
+            xs: "100%",
+            sm: `calc(100% - ${drawerWidth}px)`
+          },
+          mt: { xs: '60px', sm: '70px' },
+          minHeight: '100vh',
+          backgroundColor: "#0d0d0d"
         }}
       >
         {children || <Outlet />}
       </Box>
     </Box>
-  );
-};
-
-// Higher Order Component (HOC) wrapper
-export const withDashboardLayout = (WrappedComponent, role, title) => {
-  return (props) => (
-    <DashboardLayout role={role} title={title}>
-      <WrappedComponent {...props} />
-    </DashboardLayout>
   );
 };
 

@@ -37,7 +37,11 @@ export const ROUTES = {
   REQUEST_INVESTIGATION: "/request-investigation", // request investigation form
 
   // admin Pages
-  ADMIN_DASHBOARD: "/admin-dashboard", // admin dashboard
+ADMIN_ALL_CASE_MANAGEMENT: "/admin-all-case-management",
+ADMIN_PENDING_CASE_MANAGEMENT: "/admin-pending-case-management",
+ADMIN_REVIEW_INSIGHTS: "/admin-review-insights",
+
+  ADMIN_DASHBOARD: "/admin-dashboardd", // admin dashboard
 
   ADMIN_USER_MANAGEMENT: "/admin-user-management", // admin user management
   ADMIN_USER_MANAGEMENT_DETAIL: "/admin-user-management-detail", // admin user management details
@@ -54,7 +58,8 @@ export const ROUTES = {
   ADMIN_HISTORY: "/admin-history", // admin history
   
   ADMIN_PROFILE: "/admin-profile", // admin profile
-  ADMIN_NOTIFICATION: "admin-notification", // admin notification
+  ADMIN_NOTIFICATION: "/admin-notification", // admin notification
+  ADMIN_BLOG: "/admin-blog", // admin blog management
   ADMIN_SETTINGS: "/admin-settings", // admin settings
 
   
