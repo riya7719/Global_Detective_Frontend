@@ -7,9 +7,7 @@ import {
   Box,
   InputBase,
 } from "@mui/material";
-import { Menu } from "lucide-react";
-import { FiSearch, FiBell } from "react-icons/fi";
-import { FaRegUserCircle } from "react-icons/fa";
+import { Menu, Bell, Search } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ROUTES } from "../../core/constants/routes.constant";
 
@@ -34,10 +32,11 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          minHeight: "70px",
-          px: 3,
+          minHeight: { xs: "60px", sm: "70px" }, // ✅ responsive height
+          px: { xs: 1, sm: 2 } // ✅ responsive padding
         }}
       >
+
         {/* LEFT */}
         <Box display="flex" alignItems="center" gap={2}>
           {/* MOBILE MENU */}
@@ -53,8 +52,28 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
           {/* ADMIN PROFILE */}
           {isAdmin ? (
             <Box display="flex" alignItems="center" gap={1.5}>
-              <FaRegUserCircle size={22} color="#FFF2EF" />
-              <Typography sx={{ color: "#FFF2EF", fontSize: "14px" }}>
+              <Box
+                sx={{
+                  width: { xs: 30, sm: 36 },
+                  height: { xs: 30, sm: 36 },
+                  borderRadius: "50%",
+                  border: "1px solid #909090",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  color: "#909090",
+                  fontSize: "14px",
+                }}
+              >
+                👤
+              </Box>
+
+              <Typography
+                sx={{
+                  color: "#FFF2EF",
+                  fontSize: { xs: "14px", sm: "16px" },
+                }}
+              >
                 Profile name
               </Typography>
             </Box>
@@ -65,17 +84,18 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
 
         {/* RIGHT */}
         {isAdmin && (
-          <Box display="flex" alignItems="center" gap={3}>
-            {/* 🔍 SEARCH */}
+          <Box display="flex" alignItems="center" gap={{ xs: 1.5, sm: 3 }}>
+
+            {/* 🔍 SEARCH (responsive fix) */}
             <Box
               sx={{
-                display: "flex",
+                display: { xs: "none", sm: "flex" }, // ❗ hide on mobile
                 alignItems: "center",
                 backgroundColor: "#1a1a1a",
                 px: 2,
                 py: 0.6,
                 borderRadius: "999px",
-                width: { xs: "200px", sm: "300px", md: "350px" },
+                width: { sm: "220px", md: "300px", lg: "350px" } // ✅ responsive width
               }}
             >
               <FiSearch size={16} color="#909090" />
@@ -102,7 +122,6 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
             >
               <FiBell size={20} color="#FFF2EF" />
 
-              {/* BADGE */}
               <Box
                 sx={{
                   position: "absolute",
@@ -118,6 +137,7 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
                 2
               </Box>
             </Box>
+
           </Box>
         )}
       </Toolbar>
