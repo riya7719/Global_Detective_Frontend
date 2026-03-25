@@ -16,17 +16,18 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
   const navigate = useNavigate();
 
   return (
-    <AppBar
-      position="fixed"
-      sx={{
-        zIndex: (theme) => theme.zIndex.drawer + 1,
-        background: isAdmin
-          ? "linear-gradient(90deg, #0d0d0d, #0f1a1f)"
-          : "primary.main",
-        boxShadow: isAdmin ? "none" : undefined,
-        borderBottom: isAdmin ? "1px solid #1a1a1a" : "none",
-      }}
-    >
+ <AppBar
+  position={isAdmin ? "fixed" : "sticky"}
+  sx={{
+    top: 0,
+    zIndex: (theme) => theme.zIndex.drawer + 1,
+    background: isAdmin
+      ? "linear-gradient(90deg, #0B1220, #060A13)"
+      : "#0B1220",
+    boxShadow: isAdmin ? "none" : "0 2px 10px rgba(0,0,0,0.3)",
+    borderBottom: "1px solid #1a1a1a",
+  }}
+>
       <Toolbar
         sx={{
           display: "flex",
@@ -38,6 +39,7 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
 
         {/* LEFT */}
         <Box display="flex" alignItems="center" gap={2}>
+          {/* MOBILE MENU */}
           <IconButton
             color="inherit"
             edge="start"
@@ -47,6 +49,7 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
             <Menu />
           </IconButton>
 
+          {/* ADMIN PROFILE */}
           {isAdmin ? (
             <Box display="flex" alignItems="center" gap={1.5}>
               <Box
@@ -95,7 +98,7 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
                 width: { sm: "220px", md: "300px", lg: "350px" } // ✅ responsive width
               }}
             >
-              <Search size={16} color="#909090" />
+              <FiSearch size={16} color="#909090" />
 
               <InputBase
                 placeholder="Search"
@@ -117,7 +120,7 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
               }}
               onClick={() => navigate(ROUTES.ADMIN_NOTIFICATION)}
             >
-              <Bell color="#FFF2EF" size={20} />
+              <FiBell size={20} color="#FFF2EF" />
 
               <Box
                 sx={{

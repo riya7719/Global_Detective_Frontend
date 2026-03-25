@@ -41,7 +41,7 @@ ADMIN_ALL_CASE_MANAGEMENT: "/admin-all-case-management",
 ADMIN_PENDING_CASE_MANAGEMENT: "/admin-pending-case-management",
 ADMIN_REVIEW_INSIGHTS: "/admin-review-insights",
 
-  ADMIN_DASHBOARD: "/admin-dashboardd", // admin dashboard
+  ADMIN_DASHBOARD: "/admin-dashboard", // admin dashboard
 
   ADMIN_USER_MANAGEMENT: "/admin-user-management", // admin user management
   ADMIN_USER_MANAGEMENT_DETAIL: "/admin-user-management-detail", // admin user management details

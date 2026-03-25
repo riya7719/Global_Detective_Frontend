@@ -1,36 +1,30 @@
 import React from 'react';
 import { Outlet, useLocation } from 'react-router-dom';
-import { Box } from '@mui/material';
 import Navbar from '../public/Navbar';
-// import Footer from '../public/Footer';
+import Footer from '../public/Footer';
 import useResponsive from '../../hooks/useResponsive';
 
 const PublicLayout = () => {
   const { isMobile } = useResponsive();
   const location = useLocation();
+
   const hideNavbar = ['/login', '/signup', '/otp'].includes(location.pathname);
-  
+
   return (
-    <Box sx={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column',
-      overflowX: 'hidden'
-    }}>
+    <div className="flex flex-col min-h-screen">
+      
+      {/* Navbar */}
       {!hideNavbar && <Navbar />}
-      <Box 
-        component="main" 
-        sx={{ 
-          flex: 1,
-          p: isMobile ? 0 : 0,
-          width: '100%',
-          maxWidth: '100vw'
-        }}
-      >
+
+      {/* Main Content */}
+      <main className="flex-1 w-full">
         <Outlet />
-      </Box>
-      {/* <Footer /> */}
-    </Box>
+      </main>
+
+      {/* Footer */}
+      <Footer />
+      
+    </div>
   );
 };
 
