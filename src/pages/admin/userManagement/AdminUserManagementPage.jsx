@@ -105,18 +105,18 @@ const AdminUserManagementPage = () => {
   });
 
   return (
-    <div className="p-6 montserrat text-white bg-[#08141B] min-h-screen">
+    <div className="p-4 sm:p-6 montserrat text-white bg-[#08141B] min-h-screen">
 
       {/* HEADER */}
       <div className="mb-6">
-        <h1 className="text-xl font-semibold">User Management</h1>
+        <h1 className="text-lg sm:text-xl font-semibold">User Management</h1>
         <p className="text-xs lightGray">
           Manage all users, view activity, and control access
         </p>
       </div>
 
       {/* STATS */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <Stat title="Total Users" value="8" />
         <Stat title="Active Users" value="5" color="text-green-400" />
         <Stat title="Inactive Users" value="1" />
@@ -124,25 +124,25 @@ const AdminUserManagementPage = () => {
       </div>
 
       {/* TABLE CARD */}
-      <div className="bg-[#0E1F2B] p-4 rounded-xl">
+      <div className="bg-[#0E1F2B] p-4 rounded-xl overflow-x-auto">
 
         {/* TOP BAR */}
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
           <h2 className="text-sm font-medium">{activeTab}</h2>
 
           <input
             placeholder="Search users..."
-            className="bg-[#132735] px-3 py-1 text-xs rounded-lg outline-none"
+            className="bg-[#132735] px-3 py-1 text-xs rounded-lg outline-none w-full sm:w-auto"
           />
         </div>
 
         {/* TABS */}
-        <div className="flex gap-2 mb-4 flex-wrap">
+        <div className="flex gap-2 mb-4 flex-wrap overflow-x-auto">
           {tabs.map((t) => (
             <button
               key={t.label}
               onClick={() => setActiveTab(t.label)}
-              className={`px-3 py-1 text-xs rounded-full ${
+              className={`px-3 py-1 text-xs rounded-full whitespace-nowrap ${
                 activeTab === t.label
                   ? "bg-red text-white"
                   : "bg-[#132735] text-lightGray"
@@ -154,7 +154,7 @@ const AdminUserManagementPage = () => {
         </div>
 
         {/* TABLE */}
-        <table className="w-full text-sm">
+        <table className="w-full text-sm min-w-[700px]">
           <thead className="text-lightGray border-b border-gray/20">
             <tr>
               <th className="text-left py-3">User</th>
@@ -179,13 +179,13 @@ const AdminUserManagementPage = () => {
                       {u.name.charAt(0)}
                     </div>
                     <div>
-                      <p className="font-medium">{u.name}</p>
+                      <p className="font-medium text-sm sm:text-base">{u.name}</p>
                       <p className="text-xs lightGray">ID: {u.id}</p>
                     </div>
                   </td>
 
                   {/* CONTACT */}
-                  <td className="text-xs">
+                  <td className="text-xs break-all">
                     <p>{u.email}</p>
                     <p className="lightGray">{u.phone}</p>
                   </td>
@@ -198,7 +198,7 @@ const AdminUserManagementPage = () => {
                   </td>
 
                   {/* JOINED */}
-                  <td className="text-xs lightGray">{u.joined}</td>
+                  <td className="text-xs lightGray whitespace-nowrap">{u.joined}</td>
 
                   {/* CASES */}
                   <td>
@@ -207,7 +207,7 @@ const AdminUserManagementPage = () => {
                   </td>
 
                   {/* ACTIONS */}
-                  <td className="flex gap-2 justify-center">
+                  <td className="flex gap-2 justify-center flex-wrap">
                     <button className={`px-2 py-1 text-xs rounded ${action.style}`}>
                       {action.label}
                     </button>
@@ -229,9 +229,9 @@ const AdminUserManagementPage = () => {
 };
 
 const Stat = ({ title, value, color }) => (
-  <div className="bg-[#0E1F2B] p-4 rounded-xl">
+  <div className="bg-[#0E1F2B] p-4 rounded-xl w-full">
     <p className="text-xs lightGray">{title}</p>
-    <h2 className={`text-lg font-semibold ${color || ""}`}>{value}</h2>
+    <h2 className={`text-base sm:text-lg font-semibold ${color || ""}`}>{value}</h2>
   </div>
 );
 

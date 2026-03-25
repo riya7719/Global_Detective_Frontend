@@ -1,82 +1,111 @@
 import React from "react";
+import {
+  FiArrowUpRight,
+  FiActivity,
+  FiCheckCircle,
+  FiClock,
+  FiAlertTriangle,
+} from "react-icons/fi";
 import { AiOutlineWarning } from "react-icons/ai";
 
-const StatCard = ({ title, value, subtitle }) => (
-  <div className="bg-[#16232d] border border-[#1f2f3a] rounded-xl p-4 flex flex-col gap-1">
-    <p className="text-xs text-gray-400">{title}</p>
-    <h2 className="text-lg sm:text-xl font-semibold text-white">{value}</h2>
-    <p className="text-xs text-gray-500">{subtitle}</p>
-  </div>
-);
+/* ===================== STAT CARD ===================== */
+const StatCard = ({ title, value, subtitle, icon }) => {
+  return (
+    <div className="bg-[#16232d] border border-[#1f2f3a] rounded-2xl p-4 flex flex-col justify-between hover:border-[#2a3a45] transition">
+      
+      <div className="flex justify-between items-start">
+        <p className="text-xs text-[#909090]">{title}</p>
+        <span className="text-[#909090]">{icon}</span>
+      </div>
 
+      <div className="mt-2">
+        <h2 className="text-xl font-semibold text-white">{value}</h2>
+        <p className="text-xs text-[#6b7280]">{subtitle}</p>
+      </div>
+
+    </div>
+  );
+};
+
+/* ===================== MAIN ===================== */
 const AdminDashboard = () => {
   return (
-    <div className="bg-gradient-to-r from-[#0d0d0d] to-[#0f1a1f] min-h-screen p-4 sm:p-6 text-white">
 
-      {/* HEADER */}
-      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-6">
+    // ✅ FIXED (NO INTERNAL SCROLL)
+<div className="bg-gradient-to-br from-[#0B1220] to-[#060A13] min-h-screen p-4 sm:p-6 text-white">
+      {/* ================= HEADER ================= */}
+      <div className="flex flex-col sm:flex-row justify-between sm:items-center gap-4 mb-6">
+
         <div>
           <h1 className="text-lg sm:text-xl font-semibold flex items-center gap-2">
-            <span className="text-red">▢▢</span> Admin Dashboard
+            <span className="text-[#FF4B5C]">▢▢</span>
+            Admin Dashboard
           </h1>
-          <p className="text-xs sm:text-sm text-gray-400">
+          <p className="text-xs sm:text-sm text-[#909090]">
             Overview of all cases, detectives, and investigations
           </p>
         </div>
 
-        <button className="bg-red px-4 py-2 rounded-md text-xs sm:text-sm w-full sm:w-auto">
-          View All Cases →
+        <button className="bg-[#FF4B5C] hover:bg-[#e43b4b] transition px-4 py-2 rounded-lg text-xs sm:text-sm flex items-center justify-center gap-2">
+          View All Cases
+          <FiArrowUpRight />
         </button>
       </div>
 
-      {/* STATS */}
+      {/* ================= STATS ================= */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mb-6">
-        <StatCard title="Total Cases" value="5" subtitle="All time" />
-        <StatCard title="Active Investigations" value="2" subtitle="Currently ongoing" />
-        <StatCard title="Pending Detective KYC" value="2" subtitle="Detective approvals" />
-        <StatCard title="Pending Reviews" value="1" subtitle="Insights to review" />
-        <StatCard title="Avg Completion" value="2 days" subtitle="Per case" />
-        <StatCard title="Closed Cases" value="1" subtitle="Completed" />
+        <StatCard title="Total Cases" value="5" subtitle="All time" icon={<FiActivity />} />
+        <StatCard title="Active Investigations" value="2" subtitle="Ongoing" icon={<FiClock />} />
+        <StatCard title="Pending Detective KYC" value="2" subtitle="Approvals" icon={<FiAlertTriangle />} />
+        <StatCard title="Pending Reviews" value="1" subtitle="To review" icon={<FiClock />} />
+        <StatCard title="Avg Completion" value="2 days" subtitle="Per case" icon={<FiCheckCircle />} />
+        <StatCard title="Closed Cases" value="1" subtitle="Completed" icon={<FiCheckCircle />} />
       </div>
 
-      {/* MAIN GRID */}
+      {/* ================= MAIN GRID ================= */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
 
-        {/* CASE STATUS */}
-        <div className="lg:col-span-2 bg-[#16232d] border border-[#1f2f3a] rounded-xl p-5">
+        {/* ===== CASE STATUS ===== */}
+        <div className="lg:col-span-2 bg-[#16232d] border border-[#1f2f3a] rounded-2xl p-5">
           <h2 className="text-sm font-semibold mb-1">Case Status Overview</h2>
-          <p className="text-xs text-gray-400 mb-4">
+          <p className="text-xs text-[#909090] mb-4">
             Current distribution of cases across workflow stages
           </p>
 
           <div className="space-y-3">
             {[
-              "New Requests",
-              "Assigned",
-              "In Progress",
-              "Insights Submitted",
-              "Changes Requested",
-              "Completed",
+              { name: "New Requests", color: "bg-gray-500" },
+              { name: "Assigned", color: "bg-blue-500" },
+              { name: "In Progress", color: "bg-purple-500" },
+              { name: "Insights Submitted", color: "bg-yellow-500" },
+              { name: "Changes Requested", color: "bg-orange-500" },
+              { name: "Completed", color: "bg-green-500" },
             ].map((item, i) => (
               <div
                 key={i}
-                className="flex justify-between items-center bg-[#0f1a1f] px-4 py-2 rounded-lg border border-[#1f2f3a]"
+                className="flex justify-between items-center bg-[#0f1a1f] px-4 py-3 rounded-xl border border-[#1f2f3a] hover:border-[#2a3a45] transition"
               >
-                <span className="text-xs sm:text-sm text-gray-300">{item}</span>
-                <span className="text-xs sm:text-sm text-white">1</span>
+                <div className="flex items-center gap-3">
+                  <span className={`w-2 h-2 rounded-full ${item.color}`}></span>
+                  <span className="text-sm text-[#CFCFCF]">{item.name}</span>
+                </div>
+
+                <div className="flex items-center gap-2 text-sm text-white">
+                  1 <FiArrowUpRight size={14} />
+                </div>
               </div>
             ))}
           </div>
         </div>
 
-        {/* QUICK ACTIONS */}
-        <div className="bg-[#16232d] border border-[#1f2f3a] rounded-xl p-5">
+        {/* ===== QUICK ACTIONS ===== */}
+        <div className="bg-[#16232d] border border-[#1f2f3a] rounded-2xl p-5">
           <h2 className="text-sm font-semibold mb-1">Quick Actions</h2>
-          <p className="text-xs text-gray-400 mb-4">
+          <p className="text-xs text-[#909090] mb-4">
             Common administrative tasks
           </p>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3">
             {[
               "Assign Detective",
               "Review Insight",
@@ -85,7 +114,7 @@ const AdminDashboard = () => {
             ].map((item, i) => (
               <button
                 key={i}
-                className="bg-[#0f1a1f] border border-[#1f2f3a] py-3 rounded-lg text-xs hover:bg-[#1f2f3a]"
+                className="bg-[#0f1a1f] border border-[#1f2f3a] py-3 rounded-xl text-xs hover:bg-[#1f2f3a] hover:border-[#2a3a45] transition"
               >
                 {item}
               </button>
@@ -94,39 +123,40 @@ const AdminDashboard = () => {
         </div>
       </div>
 
-      {/* BOTTOM GRID */}
+      {/* ================= BOTTOM ================= */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
-        {/* RECENT ACTIVITY */}
-        <div className="lg:col-span-2 bg-[#16232d] border border-[#1f2f3a] rounded-xl p-5">
+        {/* ===== RECENT ACTIVITY ===== */}
+        <div className="lg:col-span-2 bg-[#16232d] border border-[#1f2f3a] rounded-2xl p-5">
           <h2 className="text-sm font-semibold mb-1">Recent Activity</h2>
-          <p className="text-xs text-gray-400 mb-4">
+          <p className="text-xs text-[#909090] mb-4">
             Latest system updates and actions
           </p>
 
-          <div className="space-y-4 text-xs">
+          <div className="space-y-4 text-sm">
             {[
-              "User Login - Admin Director logged into the system",
-              "System Maintenance completed successfully",
-              "Location Updated - Detective updated location",
-              "Location Updated - Another update",
-              "Report Generated successfully",
+              "Admin Director logged into the system",
+              "System backup completed successfully",
+              "Detective updated location",
+              "Location updated again",
+              "Report generated successfully",
             ].map((item, i) => (
-              <div key={i} className="border-b border-[#1f2f3a] pb-2">
-                {item}
+              <div key={i} className="flex gap-3 border-b border-[#1f2f3a] pb-3">
+                <span className="w-2 h-2 mt-2 rounded-full bg-[#FF4B5C]"></span>
+                <p className="text-[#CFCFCF] text-xs">{item}</p>
               </div>
             ))}
           </div>
         </div>
 
-        {/* ALERTS */}
-        <div className="bg-[#16232d] border border-[#1f2f3a] rounded-xl p-5">
+        {/* ===== ALERTS ===== */}
+        <div className="bg-[#16232d] border border-[#1f2f3a] rounded-2xl p-5">
           <h2 className="text-sm font-semibold flex items-center gap-2 mb-1">
             <AiOutlineWarning className="text-yellow-500" />
             Priority & Alerts
           </h2>
 
-          <p className="text-xs text-gray-400 mb-4">
+          <p className="text-xs text-[#909090] mb-4">
             High priority cases and warnings
           </p>
 
@@ -138,18 +168,21 @@ const AdminDashboard = () => {
             ].map((item, i) => (
               <div
                 key={i}
-                className="bg-[#0f1a1f] border border-[#1f2f3a] p-3 rounded-lg"
+                className="bg-[#0f1a1f] border border-[#1f2f3a] p-3 rounded-xl hover:border-[#2a3a45] transition"
               >
-                <p className="text-xs">{item}</p>
-                <p className="text-[10px] text-gray-500">Case ID • Assigned</p>
+                <p className="text-xs text-white">{item}</p>
+                <p className="text-[10px] text-[#6b7280]">
+                  Case ID • Assigned
+                </p>
               </div>
             ))}
           </div>
 
-          <button className="mt-4 w-full bg-[#0f1a1f] border border-[#1f2f3a] py-2 rounded text-xs hover:bg-[#1f2f3a]">
+          <button className="mt-4 w-full bg-[#0f1a1f] border border-[#1f2f3a] py-2 rounded-lg text-xs hover:bg-[#1f2f3a] transition">
             View All Priority Cases
           </button>
         </div>
+
       </div>
     </div>
   );

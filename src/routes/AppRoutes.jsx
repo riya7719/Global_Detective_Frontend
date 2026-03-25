@@ -2,6 +2,7 @@ import React, { lazy, Suspense } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import ProtectedRoute from "./ProtectedRoute";
 import { ROUTES } from "../core/constants/routes.constant";
+import Footer from "../components/public/Footer";
 
 
 /* ======================= LAYOUTS ======================= */
@@ -75,6 +76,7 @@ const AppRoutes = () => {
     <Suspense fallback={<div>Loading...</div>}>
       <Routes>
         {/* ================= PUBLIC ROUTES ================= */}
+        
         <Route element={<PublicLayout />}>
           <Route index element={<HomeHero />} />
           <Route path={ROUTES.SIGNUP} element={<Signup />} />
@@ -117,6 +119,7 @@ const AppRoutes = () => {
             <Route path={ROUTES.DETECTIVE_SETTING} element={<DetectiveSettingsPage />} />
           </Route>
         </Route>
+       
 
         {/* ================= ADMIN ROUTES ================= */}
         <Route element={<ProtectedRoute allowedRoles={["admin"]} />}>
