@@ -54,12 +54,24 @@ const Login = () => {
     e.preventDefault();
 
     // ✅ ADMIN LOGIN CONDITION (ADDED)
-   if (formData.emailOrPhone === "admin@123" && formData.password === "123") {
-  localStorage.setItem("accountType", "admin"); // ✅ VERY IMPORTANT
-  navigate(ROUTES.ADMIN_DASHBOARD); // ✅ use constant
+// ✅ ADMIN LOGIN CONDITION (UPDATED)
+if (formData.emailOrPhone === "admin@123" && formData.password === "123") {
+  const adminUser = {
+    id: "admin-001",
+    name: "Admin",
+    role: "admin",
+  };
+
+  // ✅ ADD THESE (IMPORTANT)
+  localStorage.setItem("user", JSON.stringify(adminUser));
+  localStorage.setItem("isLoggedIn", "true");
+  localStorage.setItem("accountType", "admin");
+
+  // ✅ FORCE REFRESH (VERY IMPORTANT FOR VERCEL)
+  window.location.href = ROUTES.ADMIN_DASHBOARD;
+
   return;
 }
-
     // ORIGINAL FLOW (UNCHANGED)
     const roleMap = {
       User: "user",
