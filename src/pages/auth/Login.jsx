@@ -54,10 +54,11 @@ const Login = () => {
     e.preventDefault();
 
     // ✅ ADMIN LOGIN CONDITION (ADDED)
-    if (formData.emailOrPhone === "admin@123" && formData.password === "123") {
-      navigate("/admin-dashboard");
-      return;
-    }
+   if (formData.emailOrPhone === "admin@123" && formData.password === "123") {
+  localStorage.setItem("accountType", "admin"); // ✅ VERY IMPORTANT
+  navigate(ROUTES.ADMIN_DASHBOARD); // ✅ use constant
+  return;
+}
 
     // ORIGINAL FLOW (UNCHANGED)
     const roleMap = {
