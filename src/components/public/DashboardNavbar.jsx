@@ -16,27 +16,26 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
   const navigate = useNavigate();
 
   return (
- <AppBar
-  position={isAdmin ? "fixed" : "sticky"}
-  sx={{
-    top: 0,
-    zIndex: (theme) => theme.zIndex.drawer + 1,
-    background: isAdmin
-      ? "linear-gradient(90deg, #0B1220, #060A13)"
-      : "#0B1220",
-    boxShadow: isAdmin ? "none" : "0 2px 10px rgba(0,0,0,0.3)",
-    borderBottom: "1px solid #1a1a1a",
-  }}
->
+    <AppBar
+      position={isAdmin ? "fixed" : "sticky"}
+      sx={{
+        top: 0,
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        background: isAdmin
+          ? "linear-gradient(90deg, #0B1220, #060A13)"
+          : "#0B1220",
+        boxShadow: isAdmin ? "none" : "0 2px 10px rgba(0,0,0,0.3)",
+        borderBottom: "1px solid #1a1a1a",
+      }}
+    >
       <Toolbar
         sx={{
           display: "flex",
           justifyContent: "space-between",
-          minHeight: { xs: "60px", sm: "70px" }, // ✅ responsive height
-          px: { xs: 1, sm: 2 } // ✅ responsive padding
+          minHeight: { xs: "60px", sm: "70px" },
+          px: { xs: 1, sm: 2 },
         }}
       >
-
         {/* LEFT */}
         <Box display="flex" alignItems="center" gap={2}>
           {/* MOBILE MENU */}
@@ -85,20 +84,19 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
         {/* RIGHT */}
         {isAdmin && (
           <Box display="flex" alignItems="center" gap={{ xs: 1.5, sm: 3 }}>
-
-            {/* 🔍 SEARCH (responsive fix) */}
+            {/* 🔍 SEARCH */}
             <Box
               sx={{
-                display: { xs: "none", sm: "flex" }, // ❗ hide on mobile
+                display: { xs: "none", sm: "flex" },
                 alignItems: "center",
                 backgroundColor: "#1a1a1a",
                 px: 2,
                 py: 0.6,
                 borderRadius: "999px",
-                width: { sm: "220px", md: "300px", lg: "350px" } // ✅ responsive width
+                width: { sm: "220px", md: "300px", lg: "350px" },
               }}
             >
-              <FiSearch size={16} color="#909090" />
+              <Search size={16} color="#909090" />
 
               <InputBase
                 placeholder="Search"
@@ -120,7 +118,7 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
               }}
               onClick={() => navigate(ROUTES.ADMIN_NOTIFICATION)}
             >
-              <FiBell size={20} color="#FFF2EF" />
+              <Bell size={20} color="#FFF2EF" />
 
               <Box
                 sx={{
@@ -137,7 +135,6 @@ const DashboardNavbar = ({ title, onMenuClick, role }) => {
                 2
               </Box>
             </Box>
-
           </Box>
         )}
       </Toolbar>
