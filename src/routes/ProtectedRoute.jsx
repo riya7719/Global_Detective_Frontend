@@ -61,11 +61,9 @@ const ProtectedRoute = ({ allowedRoles }) => {
   const { isLoggedIn, user, isLoading } = useAuth();
   const location = useLocation();
 
-const storedUser = JSON.parse(localStorage.getItem("user") || "null");
-
-const effectiveUser = DEV_MODE
-  ? DEV_USERS[DEV_DEFAULT_ROLE]
-  : (user || storedUser); // ✅ fallback added
+  const effectiveUser = DEV_MODE
+    ? DEV_USERS[DEV_DEFAULT_ROLE]
+    : user;
 
   const effectiveIsLoggedIn = DEV_MODE ? true : isLoggedIn;
 
@@ -93,8 +91,8 @@ const effectiveUser = DEV_MODE
   // allow access only to the detective KYC form route, redirect all other detective
   // protected pages to the KYC form.
   if (!DEV_MODE && effectiveUser?.role === "detective") {
-const storedUserData = JSON.parse(localStorage.getItem("user") || "{}");
-const kycComplete = effectiveUser?.kycComplete ?? storedUserData?.kycComplete;
+    const kycComplete = effectiveUser?.kycComplete ?? JSON.parse(localStorage.getItem('user') || '{}').kycComplete;
+
     const isOnKycPage = location?.pathname === ROUTES.DETECTIVE_FORM;
     if (!kycComplete && !isOnKycPage) {
       return <Navigate to={ROUTES.DETECTIVE_FORM} replace />;
